@@ -11,6 +11,7 @@
 
 
 extern QueueHandle_t canQueue; // Access the global CAN queue
+extern float rawValue; // Access the global raw value for debugging purposes
 void sensorTask(void *pvParameters) {
     // This task would read sensor data and process it
     // For this example, we will just simulate the sensor reading in the main loop
@@ -18,8 +19,9 @@ void sensorTask(void *pvParameters) {
     for( ; ; ) {
         // Simulate reading sensor data and processing it
         float sample = randomSensorData() + sineSensorData();
-        frame.errorFlag = (sample < 0.0 || sample > 100.0) ? 1 : 0;
         float avg = movingAverage(sample); // Apply moving average filter to the sensor data
+        rawValue = avg; // Store the raw value for debugging purposes
+        frame.errorFlag = (avg < 0.0 || avg > 100.0) ? 1 : 0; // Set error flag if the value is outside the valid range
         if (avg > 100.0) avg = 100.0;
         if (avg < 0.0) avg = 0.0;
         frame.filteredValue = (uint16_t)(avg);
