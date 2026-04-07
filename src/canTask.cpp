@@ -7,6 +7,7 @@
 
 extern QueueHandle_t canQueue; // Access the global CAN queue
 float rawValue = 0.0;
+float averageValue = 0.0;
 void canTask(void *pvParameters) {
     CANFrame frame;
     for( ; ; ) {
@@ -16,6 +17,8 @@ void canTask(void *pvParameters) {
             Serial.print("]: ");
             Serial.print("Raw Value: ");
             Serial.print(rawValue);
+            Serial.print(", Moving Average Value: ");
+            Serial.print(averageValue);
             Serial.print(", Filtered Value: ");
             Serial.print(frame.filteredValue);
             Serial.print("%, ");
