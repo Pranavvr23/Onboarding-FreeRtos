@@ -6,20 +6,15 @@
 #include "CONSTANTS.h"
 
 extern QueueHandle_t canQueue; // Access the global CAN queue
-float rawValue = 0.0;
-float averageValue = 0.0;
+float rawValue = 0.0; // Global variable to store the raw sensor value for debugging purposes
 void canTask(void *pvParameters) {
     CANFrame frame;
     for( ; ; ) {
         if (xQueueReceive(canQueue, &frame, portMAX_DELAY) == pdTRUE) {
-            Serial.print("CAN[ID=0x");
-            Serial.print(CAN_ID, HEX);
-            Serial.print("]: ");
-            Serial.print("Raw Value: ");
+            Serial.print("CAN Frame >> ");
+            Serial.print("Raw Value: "); // print raw value before any filtering
             Serial.print(rawValue);
-            Serial.print(", Moving Average Value: ");
-            Serial.print(averageValue);
-            Serial.print(", Filtered Value: ");
+            Serial.print(", Filtered Value: "); // print the filtered value 
             Serial.print(frame.filteredValue);
             Serial.print("%, ");
             Serial.print("Error Flag: ");

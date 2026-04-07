@@ -12,7 +12,7 @@ QueueHandle_t canQueue; // Access the global CAN queue
 void setup() {
   canQueue = xQueueCreate(QUEUE_LENGTH, sizeof(CANFrame)); // Create a queue for CAN frames
     if (canQueue == NULL) {
-        Serial.println("Failed to create CAN queue");
+        Serial.println("Failed to create CAN queue"); // Check if the queue was created successfully
         return;
     }
 

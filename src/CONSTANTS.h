@@ -3,11 +3,11 @@
 #include <Arduino.h>
 #include <cstdint>
 #define WINDOW_SIZE 5
-#define QUEUE_LENGTH 10
+#define QUEUE_LENGTH 5
 #define CAN_ID 0x123
 
 struct CANFrame{
     uint8_t errorFlag;
-    uint16_t filteredValue;
+    float filteredValue;
 };
 #endif // CONSTANTS_H
