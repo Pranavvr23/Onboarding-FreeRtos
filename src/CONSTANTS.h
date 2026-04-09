@@ -7,9 +7,9 @@
 
 #define WINDOW_SIZE 5
 #define QUEUE_LENGTH 5
-#define CAN_ID 0x123
 
 struct CANFrame{
+    uint32_t id;
     uint8_t errorFlag;
     float filteredValue;
 };

@@ -12,6 +12,8 @@ void canTask(void *pvParameters) {
     for( ; ; ) {
         if (xQueueReceive(canQueue, &frame, portMAX_DELAY) == pdTRUE) {
             Serial.print("CAN Frame >> ");
+            Serial.print("CAN ID: 0x"); // print the CAN ID in hexadecimal format
+            Serial.print(frame.id, HEX); // print the error flag in hexadecimal format
             Serial.print("Raw Value: "); // print raw value before any filtering
             Serial.print(rawValue);
             Serial.print(", Filtered Value: "); // print the filtered value 

@@ -23,8 +23,10 @@ void sensorTask(void *pvParameters) {
         float avg = movingAverage(sample); // Apply moving average filter to the sensor data
         frame.errorFlag = (avg < 0.0 || avg > 100.0) ? 1 : 0; // Set error flag if the value is outside the valid range
         frame.filteredValue = (avg); // Convert the average value to a percentage (0-100) and store it in the CAN frame
+        uint16_t scaled = (uint16_t)(frame.filteredValue / 100.0f * 65535);
+        frame.id = ((uint32_t)scaled << 1) | (frame.errorFlag & 0x1);
         xQueueSend(canQueue, &frame, 0); // Send the processed data to the CAN task
         
         vTaskDelay(pdMS_TO_TICKS(100)); // Simulate a delay between sensor readings
     }
-}
+}  
