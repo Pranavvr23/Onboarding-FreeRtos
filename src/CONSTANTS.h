@@ -9,7 +9,7 @@
 #define QUEUE_LENGTH 5
 
 struct CANFrame{
-    uint32_t id;
+    int32_t id;
     uint8_t errorFlag;
     float filteredValue;
 };
