@@ -7,5 +7,5 @@ The CAN layout is organized as the following: Bytes 0–1 store the filtered val
 If an error is present, that means that the data from the virtual sensor has a value below 0 or above 100.
 
 Below I have attatched a screenshot of the program's output
-<img width="855" height="387" alt="Screenshot 2026-04-07 122546" src="https://github.com/user-attachments/assets/edb42095-ffc7-466c-bc44-072a52637e99" />
-.
+<img width="1032" height="234" alt="image" src="https://github.com/user-attachments/assets/ef56669f-7598-4e9f-97df-640bcdbd77ce" />
+
